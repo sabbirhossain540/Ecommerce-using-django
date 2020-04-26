@@ -22,8 +22,7 @@
                    <p>{{ content }}</p>
                    <div class="col-sm-6 col-12">
 
-                        <form method="POST">
-                            {% csrf_token %}
+                        <form method="POST"> {% csrf_token %}
                             {{ form }}
                             <button type="submit" class="btn btn-success mt-2">Submit</button>
                         </form>
