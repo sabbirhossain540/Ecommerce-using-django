@@ -36,9 +36,5 @@ def contact(request):
 
 
 
-def index_old(request):
-    html_ = """
-    
 
-    """
-    return HttpResponse(html_)
+
