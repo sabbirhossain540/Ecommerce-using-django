@@ -22,6 +22,15 @@
                    <p>{{ content }}</p>
                 </div>
             </div>
+
+            {% if premeum_content %}
+            <div class="row">
+                <div class="col">
+                    <h1>Premium</h1>
+                    {{ premeum_content }}
+                </div>
+            </div>
+            {% endif %}
         </div>
 
         <!-- Optional JavaScript -->
