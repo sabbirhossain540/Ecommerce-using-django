@@ -20,12 +20,20 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from products.views import product_list_view, ProductListView
+
 urlpatterns = [
     path('',views.index , name="home"),
     path('about/',views.about , name="about"),
     path('contact/',views.contact , name="contact"),
     path('login/',views.login_page , name="login"),
     path('register/',views.register_page , name="register"),
+
+
+    path('products/',ProductListView.as_view() , name="products"),
+    path('products-fbv/',product_list_view , name="product_fbv"),
+
+    
     path('admin/', admin.site.urls),
 ]
 
