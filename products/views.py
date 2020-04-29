@@ -91,6 +91,11 @@ def product_detail_view(request, pk, *args, **kwargs):
 
 
 
+class ProductDetailSlugView(DetailView):
+    queryset = Product.objects.all()
+    template_name = "product/detail.html"
+
+
 
 
 
@@ -103,7 +108,6 @@ class ProductFeaturedListView(ListView):
     def get_queryset(self, *args, **kwargs):
         request = self.request
         return Product.objects.featured()
-
 
 
 

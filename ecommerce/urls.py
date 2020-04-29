@@ -26,7 +26,8 @@ from products.views import (
                             ProductDetailView, 
                             product_detail_view, 
                             ProductFeaturedListView, 
-                            ProductFeaturedDetailView
+                            ProductFeaturedDetailView,
+                            ProductDetailSlugView
                             )
 
 urlpatterns = [
@@ -39,6 +40,9 @@ urlpatterns = [
     #Listview Url Pattern
     path('products/',ProductListView.as_view() , name="products"),
     path('products-fbv/',product_list_view , name="product_fbv"),
+
+    #Product Detail Slug Based View
+    path('products/<slug:slug>',ProductDetailSlugView.as_view() , name="products"),
 
     #DetailView Url Pattern 
     path('products/<int:pk>',ProductDetailView.as_view() , name="products_detail"),
