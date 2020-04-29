@@ -5,7 +5,7 @@ import os
 # Create your models here.
 
 
-#----------------------- If we Use Formate image Name than Use This Code -----------------------------#
+#----------------------- If we want Formate image Name than Use This Code -----------------------------#
 def get_file_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
