@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.http import Http404
 # Create your views here.
 
 
@@ -50,8 +50,15 @@ class ProductDetailView(DetailView):
 
 def product_detail_view(request, pk, *args, **kwargs):
     #instance = Product.objects.get(pk=pk)
+    #instance = get_object_or_404(Product, pk=pk)
 
-    instance = get_object_or_404(Product, pk=pk)
+    try:
+        instance = Product.objects.get(id=pk)
+    except Product.DoesNotExist:
+        raise Http404("Product Doesn't Exist")
+    except:
+        print("Huu???")
+
 
     context = {
         'object':instance
