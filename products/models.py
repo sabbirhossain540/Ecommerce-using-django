@@ -20,6 +20,12 @@ def upload_image_path(instance, filename):
     return "products/{new_filename}/{final_filename}".format(new_filename = new_filename, final_filename = final_filename)
 
 #----------------------- If we Use Formate image Name than Use This Code ** End -----------------------------#
+class ProductManager(models.Manager):
+
+    def featured(self):
+        return self.get_queryset().filter(featured=True)
+
+
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -27,7 +33,9 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=20, default=39.99)
     #image = models.ImageField(upload_to="Folder name", null=True, blank=True)  ** When We Can not Use Custom image Name
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
+    featured = models.BooleanField(default=False)
 
+    objects = ProductManager()
 
     def __str__(self):
         return self.title

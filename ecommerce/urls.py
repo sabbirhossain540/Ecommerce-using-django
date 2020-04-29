@@ -20,7 +20,14 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
-from products.views import product_list_view, ProductListView, ProductDetailView, product_detail_view
+from products.views import (
+                            product_list_view, 
+                            ProductListView, 
+                            ProductDetailView, 
+                            product_detail_view, 
+                            ProductFeaturedListView, 
+                            ProductFeaturedDetailView
+                            )
 
 urlpatterns = [
     path('',views.index , name="home"),
@@ -36,6 +43,10 @@ urlpatterns = [
     #DetailView Url Pattern 
     path('products/<int:pk>',ProductDetailView.as_view() , name="products_detail"),
     path('products-fbv/<int:pk>',product_detail_view , name="product_detail_fbv"),
+
+    #Product Feature Url
+    path('featured/',ProductFeaturedListView.as_view() , name="fetaured"),
+    path('featured/<int:pk>',ProductFeaturedDetailView.as_view() , name="featured_detail"),
 
 
     path('admin/', admin.site.urls),

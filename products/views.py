@@ -5,7 +5,7 @@ from django.http import Http404
 
 #Class Based View
 from django.views.generic import ListView, DetailView
-from .models import Product
+from .models import Product, ProductManager
 
 #------------------- List View Start Here ---------------------#
 #Class Based View
@@ -32,6 +32,11 @@ def product_list_view(request):
     return render(request, "product/product_list.html", context)
 
 
+
+
+
+
+
 #-------------------- Detail View Start Here -----------------------#
 #Class Based View
 class ProductDetailView(DetailView):
@@ -44,6 +49,12 @@ class ProductDetailView(DetailView):
     #     context = super(ProductListView, self).get_context_data(*args, **kwargs)
     #     print(context)
     #     return context
+
+
+
+
+
+
 
 
 #Function Based View
@@ -70,11 +81,43 @@ def product_detail_view(request, pk, *args, **kwargs):
     else:
         raise Http404("Product Not Exists")
 
-    
+
 
     context = {
         'object':instance
     }
     return render(request, "product/detail.html", context)
+
+
+
+
+
+
+
+
+# Product Feature View Start Here
+class ProductFeaturedListView(ListView):
+    template_name = "product/product_list.html"
+
+    ## Every List view have this function 
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        return Product.objects.featured()
+
+
+
+
+
+
+
+class ProductFeaturedDetailView(DetailView):
+   # queryset = Product.objects.all()
+    template_name = "product/featured-detail.html"
+
+    ## Every List view have this function 
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        return Product.objects.featured()
+    
 
 
