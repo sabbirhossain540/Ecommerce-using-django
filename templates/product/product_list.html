@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             {% for obj in object_list %}
+                <!-- {{ forloop.counter }} -->
                 <!-- Reusable Flow -->
                 <div class="col-md-4 mb-3">
                     {% include "product/snippet/card.html" with instance=obj %}
