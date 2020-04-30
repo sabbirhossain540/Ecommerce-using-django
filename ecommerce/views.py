@@ -6,7 +6,7 @@ from .forms import ContactForm, LoginForm, RegisterForm
 
 def index(request):
     context = {
-        "title" : "Index Page",
+        "title" : "SModule",
         "content" : "Welcome To the Home page"
     }
 
