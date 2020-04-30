@@ -2,10 +2,15 @@
 
 {% block content %}
 
+<!-- *** Reusable View Technique -->
+    {% include "product/snippet/card.html" with instance=object %}
+
+
+<!-- ***Normal View Technique
 {{ object.title }}<br>
 {{ object.description }}<br>
 {% if object.image %}
-<img src="{{ object.image.url }}" alt="Product Image" class="img-fluid">
+<img src="{{ object.image.url }}" alt="Product Image" class="img-fluid"> -->
 {% endif %}
 
 {% endblock %}
