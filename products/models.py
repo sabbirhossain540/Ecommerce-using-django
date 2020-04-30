@@ -2,6 +2,9 @@ from django.db import models
 import random
 import os
 
+
+#When We want To auto Generating Slag
+from django.db.models.signals import pre_save, post_save
 from .utills import unique_slug_generator
 
 # Create your models here.
@@ -52,5 +55,12 @@ class Product(models.Model):
     #Use For Python 2 Specially
     def __unicode__(self):
         return self.title
+
+#Auto Genarateing Slug Function
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(product_pre_save_receiver, sender=Product)
 
 
