@@ -1,5 +1,22 @@
+{% extends 'base.html' %}
 
-{% for obj in object_list %}
-    <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for obj in object_list %}
+                <!-- Reusable Flow -->
+                <div class="col-md-4 mb-3">
+                    {% include "product/snippet/card.html" with instance=obj %}
+                </div>
+                
+                <!-- Normal Flow
+                <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> -->
+
+            {% endfor %}
+        </div>
+    </div>
     
-{% endfor %}
+
+{% endblock %}
+
+
