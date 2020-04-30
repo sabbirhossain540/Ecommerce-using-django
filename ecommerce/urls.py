@@ -17,18 +17,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 
-from products.views import (
-                            product_list_view, 
-                            ProductListView, 
-                            ProductDetailView, 
-                            product_detail_view, 
-                            ProductFeaturedListView, 
-                            ProductFeaturedDetailView,
-                            ProductDetailSlugView
-                            )
 
 urlpatterns = [
     path('',views.index , name="home"),
@@ -36,21 +27,21 @@ urlpatterns = [
     path('contact/',views.contact , name="contact"),
     path('login/',views.login_page , name="login"),
     path('register/',views.register_page , name="register"),
+    path('products/', include("products.urls")),
+    # #Listview Url Pattern
+    # path('products/',ProductListView.as_view() , name="products"),
+    # path('products-fbv/',product_list_view , name="product_fbv"),
 
-    #Listview Url Pattern
-    path('products/',ProductListView.as_view() , name="products"),
-    path('products-fbv/',product_list_view , name="product_fbv"),
+    # #Product Detail Slug Based View
+    # path('products/<slug:slug>',ProductDetailSlugView.as_view() , name="products"),
 
-    #Product Detail Slug Based View
-    path('products/<slug:slug>',ProductDetailSlugView.as_view() , name="products"),
+    # #DetailView Url Pattern 
+    # path('products/<int:pk>',ProductDetailView.as_view() , name="products_detail"),
+    # path('products-fbv/<int:pk>',product_detail_view , name="product_detail_fbv"),
 
-    #DetailView Url Pattern 
-    path('products/<int:pk>',ProductDetailView.as_view() , name="products_detail"),
-    path('products-fbv/<int:pk>',product_detail_view , name="product_detail_fbv"),
-
-    #Product Feature Url
-    path('featured/',ProductFeaturedListView.as_view() , name="fetaured"),
-    path('featured/<int:pk>',ProductFeaturedDetailView.as_view() , name="featured_detail"),
+    # #Product Feature Url
+    # path('featured/',ProductFeaturedListView.as_view() , name="fetaured"),
+    # path('featured/<int:pk>',ProductFeaturedDetailView.as_view() , name="featured_detail"),
 
 
     path('admin/', admin.site.urls),

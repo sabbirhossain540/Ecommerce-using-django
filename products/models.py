@@ -48,6 +48,10 @@ class Product(models.Model):
     #Use When we create Custome Function manage (e.g: ProductManager)
     objects = ProductManager()
 
+    #Slug Url Genarator 
+    def get_absolute_url(self):
+        return "/products/{slug}".format(slug=self.slug)
+
     def __str__(self):
         return self.title
     
