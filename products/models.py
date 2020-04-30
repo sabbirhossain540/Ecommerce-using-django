@@ -2,6 +2,8 @@ from django.db import models
 import random
 import os
 
+from .utills import unique_slug_generator
+
 # Create your models here.
 
 
