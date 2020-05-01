@@ -3,10 +3,12 @@
 {% include "base/css.html" %}
 
 
+<div class="container">
+    {% block content %}
+        <!--Main Area-->
 
-{% block content %}
-    <!--Main Area-->
+    {% endblock %}
+</div>
 
-{% endblock %}
 
 {% include "base/js.html" %}
