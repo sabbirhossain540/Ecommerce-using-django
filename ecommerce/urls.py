@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/',views.login_page , name="login"),
     path('register/',views.register_page , name="register"),
     path('products/', include("products.urls")),
+    path('search/', include("search.urls")),
     # #Listview Url Pattern
     # path('products/',ProductListView.as_view() , name="products"),
     # path('products-fbv/',product_list_view , name="product_fbv"),
