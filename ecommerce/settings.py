@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'products.apps.ProductsConfig',
-    'search.apps.SearchConfig'
+    'search.apps.SearchConfig',
+    'tags.apps.TagsConfig'
 
 ]
 
