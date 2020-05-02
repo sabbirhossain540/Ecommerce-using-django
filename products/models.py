@@ -1,6 +1,7 @@
 from django.db import models
 import random
 import os
+from django.db.models import Q
 
 
 #When We want To auto Generating Slag
@@ -26,11 +27,26 @@ def upload_image_path(instance, filename):
 
 #----------------------- If we Use Formate image Name than Use This Code ** End -----------------------------#
 
+class ProductQuerySet(models.query.QuerySet):
+    def active(self): 
+        return self.filter(active=True)
+    
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query) | Q(price__icontains=query)
+        return self.filter(lookups).distinct()
+
 #Custom Function For Retrive Data
 class ProductManager(models.Manager):
 
     def featured(self):
         return self.get_queryset().filter(featured=True)
+    
+    def active(self):
+        return self.get_queryset().filter(active=True)
+    
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query) | Q(price__icontains=query)
+        return self.filter(lookups).distinct()
 
 
 #Database Table Migration Section
