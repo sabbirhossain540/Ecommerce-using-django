@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-3">
+            {% if request.GET.q %}
+                <div class="col-md-12">
+                    Searched for <b>{{ request.GET.q }}</b>
+                    <hr>
+                </div>
+            {% else %}
+                <div class="col-12 col-md-6 mx-auto py-4">
+                    <input type="text" class="form-control" placeholder="Search">
+                    
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+
+            {% for obj in object_list %}
+                <!-- {{ forloop.counter }} -->
+                <!-- Reusable Flow -->
+                <div class="col-md-4 mb-3">
+                    {% include "product/snippet/card.html" with instance=obj %}
+                </div>
+                
+                <!-- Normal Flow
+                <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> -->
+
+            {% endfor %}
+        </div>
+    </div>
+    
+
+{% endblock %}
+
+
