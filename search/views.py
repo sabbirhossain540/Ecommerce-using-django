@@ -10,7 +10,6 @@ class SearchProductView(ListView):
     def get_queryset(self, *args, **kwargs):
         request = self.request
         query = request.GET.get('q')
-        print(query)
 
         if query is not None:
             return Product.objects.search(query)
