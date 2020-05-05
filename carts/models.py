@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from products.models import Product
-from django.core.serializers import serialize
+from django.db.models.signals import pre_save, post_save, m2m_changed
 
 User = settings.AUTH_USER_MODEL
 
@@ -57,4 +57,22 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
+    if action == 'past-add' or action == 'post-remove' or action == 'post_clear':
+        products = instance.products.all()
+        total = 0
+
+        for x in products:
+            total += x.price
+        if instance.subtotal != total:
+            instance.subtotal = total
+            instance.save
+
+m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
+
+def pre_save_cart_receiver(sender, instance, *args, **kwargs):
+    instance.total = instance.subtotal + 10
+
+pre_save.connect(pre_save_cart_receiver, sender=Cart)
 
