@@ -30,6 +30,7 @@ urlpatterns = [
     path('products/', include("products.urls")),
     path('search/', include("search.urls")),
     path('cart/', include("carts.urls")),
+    
     # #Listview Url Pattern
     # path('products/',ProductListView.as_view() , name="products"),
     # path('products-fbv/',product_list_view , name="product_fbv"),
