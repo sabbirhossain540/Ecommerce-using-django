@@ -11,6 +11,7 @@ class SearchProductView(ListView):
         request = self.request
         query = request.GET.get('q')
 
+        
         if query is not None:
             return Product.objects.search(query)
             #This Handle From Product Model
